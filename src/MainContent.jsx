@@ -41,7 +41,26 @@ export default class MainContent extends Component {
           city: "Burlington",
         },
       },
+      {
+        id: 5,
+        name: "ken",
+        phone: null,
+        photo: "https://picsum.photos/id/1003/60",
+        address: {
+          city: "Brampton",
+        },
+      },
     ],
+  };
+
+  customerNameStyle = (custName) => {
+    if (custName.startsWith("s")) {
+      return { backgroundColor: "green" };
+    } else if (custName.startsWith("j")) {
+      return { backgroundColor: "red" };
+    } else if (custName.startsWith("k")) {
+      return { backgroundColor: "blue" };
+    }
   };
 
   render() {
@@ -90,13 +109,7 @@ export default class MainContent extends Component {
           <td>
             <img src={cust.photo} alt="Customer" />
           </td>
-          <td
-            style={{
-              backgroundColor: cust.name.startsWith("s") ? "green" : "red",
-            }}
-          >
-            {cust.name}
-          </td>
+          <td style={this.customerNameStyle(cust.name)}>{cust.name}</td>
           <td>{this.getPhone(cust.phone)}</td>
           <td>{cust.address.city}</td>
         </tr>
