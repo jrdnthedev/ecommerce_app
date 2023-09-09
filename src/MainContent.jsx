@@ -68,13 +68,7 @@ export default class MainContent extends Component {
                 <tr key={cust.id}>
                   <td>{cust.id}</td>
                   <td>{cust.name}</td>
-                  <td>
-                    {cust.phone ? (
-                      cust.phone
-                    ) : (
-                      <span className="bg-warning">N/A</span>
-                    )}
-                  </td>
+                  <td>{this.getPhone(cust.phone)}</td>
                   <td>{cust.address.city}</td>
                 </tr>
               );
@@ -88,5 +82,9 @@ export default class MainContent extends Component {
   //Executes when the user clicks on Refresh button
   onRefreshClick = () => {
     this.setState({ customersCount: 7 });
+  };
+
+  getPhone = (phone) => {
+    return phone ? phone : <span className="bg-warning">N/A</span>;
   };
 }
