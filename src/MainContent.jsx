@@ -43,7 +43,7 @@ export default class MainContent extends Component {
   render() {
     return (
       <div>
-        <h4 className="App-link">
+        <h4>
           {this.state.pageTitle}
           <span className="badge badge-secondary m-2">
             {this.state.customersCount}
@@ -62,18 +62,7 @@ export default class MainContent extends Component {
               <th>City</th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.customers.map((cust) => {
-              return (
-                <tr key={cust.id}>
-                  <td>{cust.id}</td>
-                  <td>{cust.name}</td>
-                  <td>{this.getPhone(cust.phone)}</td>
-                  <td>{cust.address.city}</td>
-                </tr>
-              );
-            })}
-          </tbody>
+          <tbody>{this.getCustomerRow()}</tbody>
         </table>
       </div>
     );
@@ -86,5 +75,18 @@ export default class MainContent extends Component {
 
   getPhone = (phone) => {
     return phone ? phone : <span className="bg-warning">N/A</span>;
+  };
+
+  getCustomerRow = () => {
+    return this.state.customers.map((cust) => {
+      return (
+        <tr key={cust.id}>
+          <td>{cust.id}</td>
+          <td>{cust.name}</td>
+          <td>{this.getPhone(cust.phone)}</td>
+          <td>{cust.address.city}</td>
+        </tr>
+      );
+    });
   };
 }
