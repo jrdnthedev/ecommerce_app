@@ -9,6 +9,7 @@ export default class MainContent extends Component {
         id: 1,
         name: "scott",
         phone: null,
+        photo: "https://picsum.photos/id/1000/60",
         address: {
           city: "Toronto",
         },
@@ -17,6 +18,7 @@ export default class MainContent extends Component {
         id: 2,
         name: "john",
         phone: "234-4567",
+        photo: "https://picsum.photos/id/1001/60",
         address: {
           city: "Mississauga",
         },
@@ -25,6 +27,7 @@ export default class MainContent extends Component {
         id: 3,
         name: "jane",
         phone: "456-4567",
+        photo: "https://picsum.photos/id/1002/60",
         address: {
           city: "Oshawa",
         },
@@ -33,6 +36,7 @@ export default class MainContent extends Component {
         id: 4,
         name: "sally",
         phone: null,
+        photo: "https://picsum.photos/id/1003/60",
         address: {
           city: "Burlington",
         },
@@ -57,6 +61,7 @@ export default class MainContent extends Component {
           <thead>
             <tr>
               <th>#</th>
+              <th></th>
               <th>Customer Name</th>
               <th>Phone</th>
               <th>City</th>
@@ -82,7 +87,16 @@ export default class MainContent extends Component {
       return (
         <tr key={cust.id}>
           <td>{cust.id}</td>
-          <td>{cust.name}</td>
+          <td>
+            <img src={cust.photo} alt="Customer" />
+          </td>
+          <td
+            style={{
+              backgroundColor: cust.name.startsWith("s") ? "green" : "red",
+            }}
+          >
+            {cust.name}
+          </td>
           <td>{this.getPhone(cust.phone)}</td>
           <td>{cust.address.city}</td>
         </tr>
