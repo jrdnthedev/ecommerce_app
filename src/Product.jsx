@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 export default class Product extends Component {
+  //setting state to passed down props allows for manipulation of data
   state = {
     product: this.props.prod,
   };
@@ -14,7 +15,28 @@ export default class Product extends Component {
               {this.state.product.productName}
             </h5>
             <p>${this.state.product.price}</p>
-            {/* <p>qunatity {this.props.prod.quantity}</p> */}
+          </div>
+          <div className="card-footer text-right">
+            <div className="float-left">
+              <span className="badge">{this.state.product.quantity}</span>
+              <div className="btn-group">
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => {
+                    this.props.onIncrement(this.state.product, 10);
+                  }}
+                >
+                  +
+                </button>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => this.props.onDecrement(this.state.product, 0)}
+                >
+                  -
+                </button>
+              </div>
+            </div>
+            <div className="floar-right">{this.props.children}</div>
           </div>
         </div>
       </div>
