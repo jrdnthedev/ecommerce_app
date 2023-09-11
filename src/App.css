@@ -14,3 +14,7 @@
 .blue-highlight {
   background-color: blue;
 }
+
+a,i {
+  cursor: pointer;
+}

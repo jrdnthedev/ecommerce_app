@@ -10,7 +10,17 @@ export default class Product extends Component {
       <div className="col-lg-6">
         <div className="card m-2">
           <div className="card-body">
-            <p className="text-muted">product #{this.state.product.id}</p>
+            <p className="text-muted">
+              product #{this.state.product.id}{" "}
+              <span className="pull-right">
+                <i
+                  className="fa fa-times"
+                  onClick={() => {
+                    this.props.onDeleteProduct(this.state.product);
+                  }}
+                ></i>
+              </span>{" "}
+            </p>
             <h5 className="pt-2 border-top">
               {this.state.product.productName}
             </h5>

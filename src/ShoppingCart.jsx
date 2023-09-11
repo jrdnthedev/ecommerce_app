@@ -24,6 +24,7 @@ export default class ShoppingCart extends Component {
                 prod={prod}
                 onIncrement={this.handleIncrement}
                 onDecrement={this.handleDecrement}
+                onDeleteProduct={this.deleteProduct}
               >
                 <button className="btn btn-primary">Buy Now</button>
               </Product>
@@ -58,6 +59,19 @@ export default class ShoppingCart extends Component {
       //use the index of the product to update its quantity
       allProducts[index].quantity--;
     }
+    //update products quantity using setstate
+    this.setState({ products: allProducts });
+  };
+
+  deleteProduct = (product) => {
+    //copy products array to local variable
+    let allProducts = [...this.state.products];
+    //find the index of the selected product
+    let index = allProducts.indexOf(product);
+
+    //delete product based on index
+    allProducts.splice(index, 1);
+
     //update products quantity using setstate
     this.setState({ products: allProducts });
   };
