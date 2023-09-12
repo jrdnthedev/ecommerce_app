@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import "./App.css";
+import Dashboard from "./Dashboard";
 import Login from "./Login";
-// import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "./ShoppingCart";
+import CustomersList from "./CustomersList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default class App extends Component {
   render() {
     return (
-      <React.Fragment>
+      <BrowserRouter>
         <NavBar />
-        {/* <ShoppingCart /> */}
-        <Login />
-      </React.Fragment>
+        <Routes>
+          <Route path="/" exact element={<Login />} />
+          <Route path="/dashboard" exact element={<Dashboard />} />
+          <Route path="/cart" exact element={<ShoppingCart />} />
+          <Route path="/customers" exact element={<CustomersList />} />
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
