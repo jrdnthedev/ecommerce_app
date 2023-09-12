@@ -5,8 +5,9 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      email: "test@example.com",
-      password: "abc123",
+      email: "",
+      password: "",
+      message: "",
     };
   }
   render() {
@@ -44,7 +45,8 @@ export default class Login extends Component {
           />
         </div>
 
-        <div className="col-lg">
+        <div className="text-right">
+          {this.state.message}
           <button className="btn btn-primary" onClick={this.onLoginClick}>
             Login
           </button>
@@ -55,5 +57,19 @@ export default class Login extends Component {
 
   onLoginClick = () => {
     console.log(this.state);
+    if (
+      this.state.email === "admin@example.com" &&
+      this.state.password === "password123"
+    ) {
+      //show success message
+      this.setState({
+        message: <span className="text-success">login successful!</span>,
+      });
+    } else {
+      //show error message
+      this.setState({
+        message: <span className="text-danger">login failed!</span>,
+      });
+    }
   };
 }
