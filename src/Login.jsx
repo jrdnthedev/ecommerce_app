@@ -5,8 +5,6 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
       message: "",
     };
   }
@@ -55,12 +53,16 @@ export default class Login extends Component {
     );
   }
 
-  onLoginClick = () => {
+  onLoginClick = async () => {
     console.log(this.state);
-    if (
-      this.state.email === "admin@example.com" &&
-      this.state.password === "password123"
-    ) {
+    let response = await fetch(
+      `http://localhost:5000/users?email=${this.state.email}&password=${this.state.password}`,
+      { method: "GET" }
+    );
+
+    let user = await response.json();
+    console.log(user);
+    if (user.length > 0) {
       //show success message
       this.setState({
         message: <span className="text-success">login successful!</span>,

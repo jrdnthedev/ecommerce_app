@@ -6,14 +6,7 @@ export default class ShoppingCart extends Component {
     super();
     //initilaization of the state
     this.state = {
-      products: [
-        { id: 1, productName: "Iphone X", price: 2000, quantity: 0 },
-        { id: 2, productName: "Samsung Galaxy", price: 2000, quantity: 0 },
-        { id: 3, productName: "Samsung Note", price: 2000, quantity: 0 },
-        { id: 4, productName: "Iphone 12", price: 1600, quantity: 0 },
-        { id: 5, productName: "Google Pixel", price: 1500, quantity: 0 },
-        { id: 6, productName: "Iphone 13", price: 1700, quantity: 0 },
-      ],
+      products: [],
     };
     console.log("shopping cart constructor");
   }
@@ -43,9 +36,29 @@ export default class ShoppingCart extends Component {
   }
 
   //Executes after constructor and render method (includes life cycle of child components, if any) of current component
-  componentDidMount() {
+  async componentDidMount() {
     //fetch data from data source
-    // console.log("componentDidMount...");
+    var response = await fetch("http://localhost:5000/product", {
+      method: "GET",
+    });
+    //promise executed by response.json and after completion response is assigned to products
+    let products = await response.json();
+    //setting the state to the list of products returned from the db
+    this.setState({ products: products });
+
+    //alternate approach without async/await
+    // promise.then((response) => {
+    //   console.log(response);
+
+    //   let promise2 = response.json();
+    //   promise2.then((products) => {
+    //     console.log(products);
+    //     this.setState({ products: products });
+    //   });
+    // });
+
+    //check to make sure there has been a change before making http call
+    // if(prevProps.value != this.props.value){ do something...}
   }
 
   //Http calls should be made here
@@ -57,8 +70,6 @@ export default class ShoppingCart extends Component {
     //   this.props,
     //   this.state
     // );
-    //check to make sure there has been a change before making http call
-    // if(prevProps.value != this.props.value){ do something...}
   }
 
   //cleanup code to cancel http request etc... goes in here
