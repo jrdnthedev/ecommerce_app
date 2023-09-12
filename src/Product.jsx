@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 
 export default class Product extends Component {
-  //setting state to passed down props allows for manipulation of data
-  state = {
-    product: this.props.prod,
-  };
+  constructor(props) {
+    super(props);
+    //setting state to passed down props allows for manipulation of data
+    this.state = {
+      product: this.props.prod,
+    };
+    // console.log("product constructor");
+  }
+
   render() {
+    // console.log("product render ");
     return (
       <div className="col-lg-6">
         <div className="card m-2">
@@ -51,5 +57,22 @@ export default class Product extends Component {
         </div>
       </div>
     );
+  }
+
+  //Executes after constructor and render method (includes life cycle of child components, if any) of current component
+  componentDidMount() {
+    //fetch data from data source
+    // console.log("product componentDidMount...");
+  }
+
+  //Http calls should be made here
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("product componentDidUpdate...");
+    //check to make sure there has been a change before making http call
+    // if(prevProps.value != this.props.value){ do something...}
+  }
+
+  componentWillUnmount() {
+    // console.log("componentWillUnmount product");
   }
 }
