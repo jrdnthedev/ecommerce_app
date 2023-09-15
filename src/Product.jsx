@@ -7,11 +7,9 @@ export default class Product extends Component {
     this.state = {
       product: this.props.prod,
     };
-    // console.log("product constructor");
   }
 
   render() {
-    // console.log("product render ");
     return (
       <div className="col-lg-6">
         <div className="card m-2">

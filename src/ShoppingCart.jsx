@@ -8,11 +8,9 @@ export default class ShoppingCart extends Component {
     this.state = {
       products: [],
     };
-    console.log("shopping cart constructor");
   }
 
   render() {
-    console.log("shopping cart render ");
     return (
       <div className="container-fluid">
         <h4>Shopping Cart</h4>
@@ -46,6 +44,7 @@ export default class ShoppingCart extends Component {
     //setting the state to the list of products returned from the db
     this.setState({ products: products });
 
+    console.log("componentDidMount ", this.state.products);
     //alternate approach without async/await
     // promise.then((response) => {
     //   console.log(response);
@@ -86,13 +85,12 @@ export default class ShoppingCart extends Component {
     let allProducts = [...this.state.products];
     //find the index of the selected product
     let index = allProducts.indexOf(product);
-    console.log(allProducts[index]);
     if (allProducts[index].quantity < maxValue) {
       //use the index of the product to update its quantity
       allProducts[index].quantity++;
+      //update products quantity using setstate
+      this.setState({ products: allProducts });
     }
-    //update products quantity using setstate
-    this.setState({ products: allProducts });
   };
 
   handleDecrement = (product, minValue) => {
@@ -104,9 +102,9 @@ export default class ShoppingCart extends Component {
     if (allProducts[index].quantity > minValue) {
       //use the index of the product to update its quantity
       allProducts[index].quantity--;
+      //update products quantity using setstate
+      this.setState({ products: allProducts });
     }
-    //update products quantity using setstate
-    this.setState({ products: allProducts });
   };
 
   deleteProduct = (product) => {
